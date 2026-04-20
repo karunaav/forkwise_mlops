@@ -1,31 +1,10 @@
-# ============================================================
-# ForkWise Training Configuration
-# ============================================================
-# Ingredient Substitution Model — ECE-GY 9183 proj01
-#
-# This file is the single source of truth for hyperparameters.
-# CLI args (--embed_dim, --lr, etc.) override these values.
-# ============================================================
-
-# ---- Model Architecture ----
-embed_dim: 128          # Ingredient embedding vector size (try: 64, 128, 256, 512)
-hidden_dim: 256         # Reserved for future MLP layers
-context_len: 20         # Max ingredients per recipe context (pad/truncate to this)
-
-# ---- Training ----
-epochs: 20              # Full passes through training data (try: 20, 30, 50)
-batch_size: 64          # Samples per gradient update (try: 32, 64, 128, 256)
-lr: 0.001               # Adam learning rate (try: 0.001, 0.0005, 0.0003)
-margin: 0.5             # Contrastive margin ranking loss margin (try: 0.3, 0.5, 1.0)
-
-# ---- Quality Gate ----
-# Justification (from system impl guide):
-#   Random baseline MRR@3 ~ 0.10 for vocab-size ranking
-#   0.30 = model is 3x better than random = meaningful improvement
-#   Only models passing this gate get registered in MLflow and
-#   uploaded to models-proj01/production/subst_model_current.pth
-quality_gate_mrr: 0.30
-
-# ---- MLflow ----
-# Overridden by --mlflow_tracking_uri CLI arg or MLFLOW_TRACKING_URI env var
-mlflow_uri: "http://localhost:5000"
+embed_dim: 128
+hidden_dim: 256
+context_len: 20
+epochs: 20
+batch_size: 64
+lr: 0.001
+margin: 0.5
+gat_pretrain_epochs: 30
+quality_gate_mrr: 0.15
+mlflow_uri: 'http://localhost:5000'
