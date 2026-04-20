@@ -92,4 +92,4 @@ docker run --rm -v $(pwd):/workspace --gpus all --network host \
 | Role | Name | NetID |
 |---|---|---|
 | Training | Karuna Venkatesh | fk2496 |
-| Serving | Hivansh Dhakne | hd2296 |
+
